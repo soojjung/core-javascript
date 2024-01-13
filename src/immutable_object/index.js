@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ImmutableObject = () => {
   const user = { name: "정수진", gender: "female", age: 29 };
@@ -38,15 +39,21 @@ const ImmutableObject = () => {
         <h2>2024: {JSON.stringify(user2)}</h2>
       </div>
 
-      <button onClick={(e) => changeAge(user)}>
-        새해가 밝았습니다. 떡국을 먹은 당신, 이 버튼을 눌러주세요.
-      </button>
-
-      {showDeepCopyBtn === true && (
-        <button onClick={(e) => changeAgeByDeepCopy(user2)}>
-          아니, 무슨 문제라도 있나요? 이 버튼을 눌러보세요!
+      <div style={{ margin: "0 0 20px" }}>
+        <button onClick={(e) => changeAge(user)}>
+          새해가 밝았습니다. 떡국을 먹은 당신, 이 버튼을 눌러주세요.
         </button>
-      )}
+      </div>
+
+      <div style={{ margin: "0 0 20px" }}>
+        {showDeepCopyBtn === true && (
+          <button onClick={(e) => changeAgeByDeepCopy(user2)}>
+            아니, 무슨 문제라도 있나요? 이 버튼을 눌러보세요!
+          </button>
+        )}
+      </div>
+
+      <Link to="/immer">Immer 라이브러리 사용해보기</Link>
     </div>
   );
 };
