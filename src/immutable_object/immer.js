@@ -3,13 +3,19 @@ import { Link } from "react-router-dom";
 import { produce } from "immer";
 
 const ImmutableObjectImmer = () => {
-  const user = { name: "정수진", gender: "female", age: 29 };
+  const user = {
+    name: "정수진",
+    gender: "female",
+    age: 29,
+    favoriteFood: ["coffee", "apple", "pizza"],
+  };
   const [user1, setUser1] = useState(user);
   const [user2, setUser2] = useState(user);
 
   const changeAgeByImmer = (user) => {
     const newUser = produce(user, (draft) => {
       draft.age += 1;
+      draft.favoriteFood[1] = "banana";
     });
 
     setUser1(user); // user의 age는 변하지 않고

@@ -7,27 +7,42 @@ const ImmutableObject = () => {
   const [user2, setUser2] = useState(user);
   const [showDeepCopyBtn, setShowDeepCopyBtn] = useState(false);
 
+  console.log(user1 === user2); // true
+  console.log(user === user1); // 처음엔 true 였다가 버튼을 누른 후엔 false (setShowDeepCopyBtn(true);를 해주면 false가 되고 그렇지 않으면 true이다.)
+
   const changeAge = (user) => {
     const newUser = user;
     newUser.age += 1;
 
-    setUser1(user);
-    setUser2(newUser);
+    // setUser1(user);
+    // setUser2(newUser);
+    // 위 setState 코드를 사용하지 않아도 user1과 user2의 나이는 변한다.
+    // 이유: 새로운 주소가 할당된게 아니라서?
 
-    setTimeout(() => {
-      alert(`user1: ${user1.age}살, user2: ${user2.age}살`);
-      setShowDeepCopyBtn(true);
-    }, 500);
+    // setTimeout(() => {
+    // setShowDeepCopyBtn(true);
+    alert(`user1: ${user1.age}살, user2: ${user2.age}살`);
+    // }, 500);
   };
 
-  const changeAgeByDeepCopy = (user) => {
-    const newUser = {};
-    for (const prop in user) {
-      newUser[prop] = user[prop];
-    }
-    newUser.age += 1;
+  const changeAgeByCopy = (user) => {
+    setUser2({ ...user, age: user.age + 1 }); // 얕은 복사이긴 하지만 원뎁스 이니까 copyObjectDeep을 쓰지 않고 이렇게 리팩토링 할 수 있다.
 
-    setUser2(newUser);
+    // const newUser = copyObjectDeep(user);
+    // newUser.age += 1;
+    // setUser2(newUser);
+  };
+
+  const copyObjectDeep = (user) => {
+    let newUser = {};
+    if (typeof user === "object" && user !== null) {
+      for (const prop in user) {
+        newUser[prop] = copyObjectDeep(user[prop]);
+      }
+    } else {
+      newUser = user;
+    }
+    return newUser;
   };
 
   return (
@@ -47,7 +62,7 @@ const ImmutableObject = () => {
 
       <div style={{ margin: "0 0 20px" }}>
         {showDeepCopyBtn === true && (
-          <button onClick={(e) => changeAgeByDeepCopy(user2)}>
+          <button onClick={(e) => changeAgeByCopy(user2)}>
             아니, 무슨 문제라도 있나요? 이 버튼을 눌러보세요!
           </button>
         )}
