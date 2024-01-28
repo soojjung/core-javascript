@@ -7,12 +7,11 @@ const ImmutableObject = () => {
   const [user2, setUser2] = useState(user);
   const [showDeepCopyBtn, setShowDeepCopyBtn] = useState(false);
 
-  console.log(user1 === user2); // true
-  console.log(user === user1); // 처음엔 true 였다가 버튼을 누른 후엔 false (setShowDeepCopyBtn(true);를 해주면 false가 되고 그렇지 않으면 true이다.)
-
   const changeAge = (user) => {
     const newUser = user;
     newUser.age += 1;
+
+    console.log(user === user1); // 처음엔 true 였다가 버튼을 누른 후엔 false (setShowDeepCopyBtn(true);를 해주면 false가 되고 그렇지 않으면 true이다.)
 
     // setUser1(user);
     // setUser2(newUser);
@@ -20,7 +19,7 @@ const ImmutableObject = () => {
     // 이유: 새로운 주소가 할당된게 아니라서?
 
     // setTimeout(() => {
-    // setShowDeepCopyBtn(true);
+    setShowDeepCopyBtn(true);
     alert(`user1: ${user1.age}살, user2: ${user2.age}살`);
     // }, 500);
   };
