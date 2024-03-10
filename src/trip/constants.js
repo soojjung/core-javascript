@@ -1,8 +1,18 @@
 export const COUNTRY_OPTIONS = [
-  { key: "10001", value: "UTC+09:00", label: <span>Seoul</span> },
-  { key: "10002", value: "UTC-08:00", label: <span>California</span> },
-  { key: "10003", value: "UTC-05:00", label: <span>New York</span> },
-  { key: "10004", value: "UTC±00:00", label: <span>London</span> },
-  { key: "10005", value: "UTC+01:00", label: <span>Paris</span> },
-  { key: "10006", value: "UTC+09:00", label: <span>Tokyo</span> },
+  { value: "10001", label: "Seoul", utc: "UTC+09:00", tz: "Asia/Seoul" },
+  {
+    value: "10002",
+    label: "California",
+    utc: "UTC-08:00",
+    tz: "America/California",
+  },
+  {
+    value: "10003",
+    label: "New York",
+    utc: "UTC-05:00",
+    tz: "America/New_York",
+  },
+  { value: "10004", label: "London", utc: "UTC±00:00", tz: "Europe/London" },
+  { value: "10005", label: "Paris", utc: "UTC+01:00", tz: "Europe/Paris" },
+  { value: "10006", label: "Tokyo", utc: "UTC+09:00", tz: "Asia/Tokyo" },
 ];
