@@ -5,8 +5,9 @@ import timezone from "dayjs/plugin/timezone";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { COUNTRY_OPTIONS } from "./constants";
 import {
-  BackgroundDiv,
   Wrapper,
+  BackgroundDiv,
+  Box,
   Title,
   Section,
   Heading3,
@@ -69,14 +70,6 @@ const Trip = () => {
     );
   };
 
-  const isButtonDisabled = () => {
-    let isDisabled = true;
-    if (!!departureDate && !!arrivalDate) {
-      isDisabled = false;
-    }
-    return isDisabled;
-  };
-
   const onClickButton = (e) => {
     const arrivalTz = COUNTRY_OPTIONS.find(
       (item) => item.value === arrivalCountry
@@ -86,73 +79,75 @@ const Trip = () => {
   };
 
   return (
-    <BackgroundDiv>
-      <Wrapper>
-        <Title>Travel Plan</Title>
+    <Wrapper>
+      <BackgroundDiv>
+        <Box>
+          <Title>Travel Plan</Title>
 
-        <Section>
-          <Heading3>Step1. 여행국가 선택하기</Heading3>
-          <StyledSelect
-            options={COUNTRY_OPTIONS}
-            onChange={onChangeDepartureCountry}
-            value={departureCountry}
-          />
-          <ArrowRightOutlined />
-          <StyledSelect
-            options={COUNTRY_OPTIONS}
-            onChange={onChangeArrivalCountry}
-            value={arrivalCountry}
-          />
-        </Section>
-
-        <Section>
-          <Heading3>Step2. 출발 날짜와 시간 선택하기</Heading3>
-          <Div>
-            출국 날짜 :{" "}
-            <StyledDatePicker
-              onChange={onChangeDate}
-              showTime
-              format={format}
+          <Section>
+            <Heading3>Step1. 여행국가 선택하기</Heading3>
+            <StyledSelect
+              options={COUNTRY_OPTIONS}
+              onChange={onChangeDepartureCountry}
+              value={departureCountry}
             />
-          </Div>
-        </Section>
+            <ArrowRightOutlined />
+            <StyledSelect
+              options={COUNTRY_OPTIONS}
+              onChange={onChangeArrivalCountry}
+              value={arrivalCountry}
+            />
+          </Section>
 
-        <Section>
-          <Heading3>Step3. 비행 시간 입력하기</Heading3>
-          <StyledInputNumber
-            min={0}
-            defaultValue={0}
-            onChange={onChangeHour}
-            name="hour"
-            disabled={!departureDate}
-          />
-          시간
-          <StyledInputNumber
-            min={0}
-            max={59}
-            defaultValue={0}
-            onChange={onChangeMinute}
-            name="minute"
-            disabled={!departureDate}
-          />
-          분
-        </Section>
+          <Section>
+            <Heading3>Step2. 출발 날짜와 시간 선택하기</Heading3>
+            <Div>
+              출국 날짜 :{" "}
+              <StyledDatePicker
+                onChange={onChangeDate}
+                showTime
+                format={format}
+              />
+            </Div>
+          </Section>
 
-        <ButtonWrapper>
-          <StyledButton
-            type="primary"
-            disabled={isButtonDisabled()}
-            onClick={onClickButton}
-          >
-            계산하기
-          </StyledButton>
-        </ButtonWrapper>
+          <Section>
+            <Heading3>Step3. 비행 시간 입력하기</Heading3>
+            <StyledInputNumber
+              min={0}
+              defaultValue={0}
+              onChange={onChangeHour}
+              name="hour"
+              disabled={!departureDate}
+            />
+            시간
+            <StyledInputNumber
+              min={0}
+              max={59}
+              defaultValue={0}
+              onChange={onChangeMinute}
+              name="minute"
+              disabled={!departureDate}
+            />
+            분
+          </Section>
 
-        <Section>
-          <Heading3>예상 현지 도착 시각: {localArrivaleDate}</Heading3>
-        </Section>
-      </Wrapper>
-    </BackgroundDiv>
+          <ButtonWrapper>
+            <StyledButton
+              type="primary"
+              disabled={!departureDate || !arrivalDate}
+              onClick={onClickButton}
+            >
+              계산하기
+            </StyledButton>
+          </ButtonWrapper>
+
+          <Section>
+            <Heading3>예상 현지 도착 시각: {localArrivaleDate}</Heading3>
+          </Section>
+        </Box>
+      </BackgroundDiv>
+    </Wrapper>
   );
 };
 

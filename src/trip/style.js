@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { DatePicker, Select, Button, InputNumber } from "antd";
 
+export const Wrapper = styled.div``;
+
 export const BackgroundDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -8,9 +10,10 @@ export const BackgroundDiv = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   width: 840px;
+  min-width: 840px;
 `;
 
-export const Wrapper = styled.div`
+export const Box = styled.div`
   width: 440px;
 
   padding: 0 28px;
