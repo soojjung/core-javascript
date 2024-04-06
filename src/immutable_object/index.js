@@ -67,7 +67,7 @@ const ImmutableObject = () => {
         )}
       </div>
 
-      <Link to="/immer">Immer 라이브러리 사용해보기</Link>
+      <Link to="/immutable-object/immer">Immer 라이브러리 사용해보기</Link>
     </div>
   );
 };
