@@ -37,7 +37,7 @@ const ImmutableObjectImmer = () => {
         </button>
       </div>
 
-      <Link to="/"> 이전 페이지로 돌아가기 </Link>
+      <Link to="/immutable-object"> 이전 페이지로 돌아가기 </Link>
     </div>
   );
 };
